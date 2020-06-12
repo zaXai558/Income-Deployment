@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>Salary</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+</head>
+<body>
+<style type="text/css">
+</style>
+  <body>
+ <div class="login">
+	<h1>Is Your Salary More Than 50K</h1>
+     <form action="{{ url_for('predict')}}"method="post">
+
+<div class="wrap-input100 "><span class="label-input100">Age</span> <input id="age" class="input100" name="age" type="text" placeholder=" ex: 50" /></div>
+
+  <div class="wrap-input100" style="border-bottom: 0px;"><span class="label-input100">Workclass</span><select id="workclass" class="input100" style="padding: 10px 5px; margin-top: 15px; border: 2px solid #d9d9d9;" name="workclass">
+<option value="">Select Workclass</option>
+<option value="0">Federal-gov'</option>
+<option value="1">Local-gov</option>
+<option value="2">Private</option>
+<option value="3">Self-emp-inc</option>
+<option value="4">Self-emp-not-inc</option>
+<option value="5">State-gov</option>
+<option value="6">Without-pay</option>
+</select></div>  
+  <div class="wrap-input100 " >
+					<span class="label-input100">Final Weight</span>
+					<input class="input100" type="text" id="fnlwgt" name="fnlwgt" placeholder="Weights on CPS files eg: 50000,175478">
+					<span class="focus-input100"></span>
+				</div>
+	  <div class="wrap-input100" style="border-bottom: 0px;"><span class="label-input100">Education</span><select id="education" class="input100" style="padding: 10px 5px; margin-top: 15px; border: 2px solid #d9d9d9;" name="education">
+<option value="">Select Education</option>
+<option value="0">10th'</option>
+<option value="1">11th</option>
+<option value="2">12th</option>
+<option value="3">1st-4th</option>
+<option value="4">5th-6th</option>
+<option value="5">7th-8th</option>
+<option value="6">9th</option>
+<option value="7">Assoc-acdm</option>
+<option value="8">Assoc-voc</option>
+<option value="9">Bachelors</option>
+<option value="10">Doctorate</option>
+<option value="11">HS-grad</option>
+<option value="12">Masters</option>
+<option value="13">Preschool</option>
+<option value="14">Prof-school</option>
+<option value="15">Some-college</option>
+</select></div> 			
+  <div class="wrap-input100 " >
+					<span class="label-input100">Education Number</span>
+					<input class="input100" type="text" id="education.num" name="education.num" placeholder=" eg. 10">
+					<span class="focus-input100"></span>
+				</div>
+  
+  <div class="wrap-input100" style="border-bottom: 0px;"><span class="label-input100">Martial Status</span><select id="marital.status" class="input100" style="padding: 10px 5px; margin-top: 15px; border: 2px solid #d9d9d9;" name="marital.status">
+<option value="">Status</option>
+<option value="0">Single</option>
+<option value="1">Married</option>
+</select></div>
+
+  <div class="wrap-input100" style="border-bottom: 0px;"><span class="label-input100">Occupation</span><select id="occupation" class="input100" style="padding: 10px 5px; margin-top: 15px; border: 2px solid #d9d9d9;" name="occupation">
+<option value="">Select Occupation</option>
+<option value="0">Adm-clerical</option>
+<option value="1">Armed-Forces</option>
+<option value="2">Craft-repair</option>
+<option value="3">Exec-managerial</option>
+<option value="4">Farming-fishing</option>
+<option value="5">Handlers-cleaners</option>
+<option value="6">Machine-op-inspct</option>
+<option value="7">Other-service</option>
+<option value="8">Priv-house-serv</option>
+<option value="9">Prof-specialty</option>
+<option value="10">Protective-serv</option>
+<option value="11">Sales</option>
+<option value="12">Tech-support</option>
+<option value="13">Transport-moving</option>
+</select></div> 
+  <div class="wrap-input100" style="border-bottom: 0px;"><span class="label-input100">Relationship</span><select id="relationship" class="input100" style="padding: 10px 5px; margin-top: 15px; border: 2px solid #d9d9d9;" name="relationship">
+<option value="">Relationship</option>
+<option value="0">Husband</option>
+<option value="1">Not-in-family</option>
+<option value="2">Other-relative</option>
+<option value="3">Own-child</option>
+<option value="4">Unmarried</option>
+<option value="5">Wife</option>
+</select></div>
+  <div class="wrap-input100" style="border-bottom: 0px;"><span class="label-input100">Race</span><select id="race" class="input100" style="padding: 10px 5px; margin-top: 15px; border: 2px solid #d9d9d9;" name="race">
+<option value="">Race</option>
+<option value="0">Amer-Indian-Eskimo</option>
+<option value="1">Asian-Pac-Islander</option>
+<option value="2">Black</option>
+<option value="3">Other</option>
+<option value="4">White</option>
+</select></div>
+
+
+
+<div class="wrap-input100" style="border-bottom: 0px;"><span class="label-input100">Sex</span><select id="sex" class="input100" style="padding: 10px 5px; margin-top: 15px; border: 2px solid #d9d9d9;" name="sex">
+<option value="">Select Gender</option>
+<option value="0">Female</option>
+<option value="1">Male</option>
+</select></div>
+  
+    <div class="wrap-input100 " >
+					<span class="label-input100">Capital Gain</span>
+					<input class="input100" type="text" id="capital.gain" name="capital.gain" placeholder=" eg. 9562">
+					<span class="focus-input100"></span>
+				</div>
+      <div class="wrap-input100 " >
+					<span class="label-input100">Capital Loss</span>
+					<input class="input100" type="text" id="capital.loss" name="capital.loss" placeholder=" eg. 2080">
+					<span class="focus-input100"></span>
+				</div>
+   <div class="wrap-input100 " >
+					<span class="label-input100">Hours Per Week</span>
+					<input class="input100" type="text" id="hours.per.week" name="hours.per.week" placeholder=" eg. 45">
+					<span class="focus-input100"></span>
+				</div>
+	  <div class="wrap-input100" style="border-bottom: 0px;"><span class="label-input100">Native Country</span><select id="native.country" class="input100" style="padding: 10px 5px; margin-top: 15px; border: 2px solid #d9d9d9;" name="native.country">
+<option value="">Country</option>
+<option value="0">Cambodia</option>
+<option value="1">Canada</option>
+<option value="2">China</option>
+<option value="3">Columbia</option>
+<option value="4">Cuba</option>
+<option value="5">Dominican-Republic</option>
+<option value="6">Ecuador</option>
+<option value="7">El-Salvador</option>
+<option value="8">England</option>
+<option value="9">France</option>
+<option value="10">Germany</option>
+<option value="11">Greece</option>
+<option value="12">Guatemala</option>
+<option value="13">Haiti</option>
+<option value="14">Netherlands</option>
+<option value="15">Honduras</option>
+<option value="16">Hong</option>
+<option value="17">Hungary</option>
+<option value="18">India</option>
+<option value="19">Iran</option>
+<option value="20">Ireland</option>
+<option value="21">Italy</option>
+<option value="22">Jamaica</option>
+<option value="23">Japan</option>
+<option value="24">Laos</option>
+<option value="25">Mexico</option>
+<option value="26">Nicaragua</option>
+<option value="27">Outlying-US(Guam-USVI-etc)</option>
+<option value="28">Peru</option>
+<option value="29">Philippines</option>
+<option value="30">Poland</option>
+<option value="31">Portugal</option>
+<option value="32">Puerto-Rico</option>
+<option value="33">Scotland</option>
+<option value="34">South Korea</option>
+<option value="35">Taiwan</option>
+<option value="36">Thailand</option>
+<option value="37">Trinadad&Tobago</option>
+<option value="38">United-States</option>
+<option value="39">Vietnam</option>
+<option value="40">Yugoslavia</option>
+</select></div>			
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
+
+
